@@ -1,28 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #d1bbee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator {
+      background-color: rgb(199, 194, 218);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(103, 23, 134, 0.1);
+      text-align: center;
+    }
+    .button {
+      margin: 10px;
+      padding: 15px 20px;
+      font-size: 16px;
+      background-color: #ff00ea;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #b300aa;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px 0;
+      width: 100%;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+    }
+    h1 {
+      color: #333;
+    }
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <div class="calculator">
-        <h2>Calculadora</h2>
-        <input type="number" id="num1" placeholder="Primer número">
-        <input type="number" id="num2" placeholder="Segundo número">
-        
-        <div class="buttons">
-            <button onclick="calculate('add')">➕ Sumar</button>
-            <button onclick="calculate('subtract')">➖ Restar</button>
-            <button onclick="calculate('multiply')">✖ Multiplicar</button>
-            <button onclick="calculate('divide')">➗ Dividir</button>
-            <button onclick="exitCalculator()">❌ Salir</button>
-        </div>
-        
-        <p id="result">Resultado: <span id="result-value">--</span></p>
-    </div>
 
-    <script src="script.js"></script>
+<div class="calculator">
+  <h1>Calculadora</h1>
+
+  <label for="num1">Primer número:</label>
+  <input type="number" id="num1" placeholder="Ingresa el primer número" required>
+
+  <label for="num2">Segundo número:</label>
+  <input type="number" id="num2" placeholder="Ingresa el segundo número" required>
+
+  <br>
+  <button class="button" onclick="operar('suma')">Suma</button>
+  <button class="button" onclick="operar('resta')">Resta</button>
+  <button class="button" onclick="operar('multiplicacion')">Multiplicación</button>
+  <button class="button" onclick="operar('division')">División</button>
+  <button class="button" onclick="salir()">Salir</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+  // Función para realizar las operaciones
+  function suma(a, b) {
+    return a + b;
+  }
+
+  function resta(a, b) {
+    return a - b;
+  }
+
+  function multiplicacion(a, b) {
+    return a * b;
+  }
+
+  function division(a, b) {
+    if (b === 0) {
+      return 'Error: No se puede dividir entre cero';
+    }
+    return a / b;
+  }
+
+  // Función para elegir la operación y mostrar el resultado
+  function operar(operacion) {
+    let num1 = parseFloat(document.getElementById("num1").value);
+    let num2 = parseFloat(document.getElementById("num2").value);
+    let resultado;
+
+    if (isNaN(num1) || isNaN(num2)) {
+      alert("Por favor, ingresa números válidos.");
+      return;
+    }
+
+    switch (operacion) {
+      case 'suma':
+        resultado = suma(num1, num2);
+        break;
+      case 'resta':
+        resultado = resta(num1, num2);
+        break;
+      case 'multiplicacion':
+        resultado = multiplicacion(num1, num2);
+        break;
+      case 'division':
+        resultado = division(num1, num2);
+        break;
+      default:
+        resultado = 'Operación no válida';
+    }
+
+    document.getElementById("result").innerText = "Resultado: " + resultado;
+  }
+
+  // Función para salir
+  function salir() {
+    alert("¡Hasta la próxima!");
+    window.close();  // Cierra la ventana actual
+  }
+</script>
+
 </body>
 </html>
+

@@ -1,68 +1,57 @@
-// Funciones de operaciones
-function add(a, b) {
-    return a + b;
+// Funciones para cada operación
+function suma(a, b) {
+  return a + b;
 }
 
-function subtract(a, b) {
-    return a - b;
+function resta(a, b) {
+  return a - b;
 }
 
-function multiply(a, b) {
-    return a * b;
+function multiplicacion(a, b) {
+  return a * b;
 }
 
-function divide(a, b) {
-    if (b === 0) {
-        return "Error: No se puede dividir por 0";
-    }
-    return a / b;
+function division(a, b) {
+  if (b === 0) {
+    return 'Error: No se puede dividir entre cero';
+  }
+  return a / b;
 }
 
-// Función principal
-function calculate(operation) {
-    let num1 = document.getElementById("num1").value.trim();
-    let num2 = document.getElementById("num2").value.trim();
-    let resultElement = document.getElementById("result-value");
+// Función para realizar la operación
+function realizarOperacion(operacion) {
+  let num1 = parseFloat(document.getElementById("num1").value);
+  let num2 = parseFloat(document.getElementById("num2").value);
+  let resultado;
 
-    // Validar si los campos están vacíos
-    if (num1 === "" || num2 === "") {
-        resultElement.innerText = "⚠ Ingresa ambos números";
-        return;
-    }
+  if (isNaN(num1) || isNaN(num2)) {
+    alert("Por favor, ingresa números válidos.");
+    return;
+  }
 
-    // Convertir a número
-    let number1 = parseFloat(num1);
-    let number2 = parseFloat(num2);
+  switch (operacion) {
+    case 'suma':
+      resultado = suma(num1, num2);
+      break;
+    case 'resta':
+      resultado = resta(num1, num2);
+      break;
+    case 'multiplicacion':
+      resultado = multiplicacion(num1, num2);
+      break;
+    case 'division':
+      resultado = division(num1, num2);
+      break;
+    default:
+      resultado = 'Operación no válida';
+  }
 
-    // Validar si los valores ingresados son números válidos
-    if (isNaN(number1) || isNaN(number2)) {
-        resultElement.innerText = "⚠ Entrada inválida";
-        return;
-    }
-
-    let result;
-    switch (operation) {
-        case "add":
-            result = add(number1, number2);
-            break;
-        case "subtract":
-            result = subtract(number1, number2);
-            break;
-        case "multiply":
-            result = multiply(number1, number2);
-            break;
-        case "divide":
-            result = divide(number1, number2);
-            break;
-        default:
-            result = "❌ Error";
-    }
-
-    // Mostrar resultado
-    resultElement.innerText = result;
+  // Mostrar el resultado
+  document.getElementById("result").innerText = "Resultado: " + resultado;
 }
 
 // Función para salir
-function exitCalculator() {
-    alert("Hasta la próxima!");
+function salir() {
+  alert("¡Hasta la próxima!");
+  window.close();  // Cierra la ventana actual
 }
