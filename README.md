@@ -3,6 +3,9 @@ Portafolio
 
 <a href="https://github.com/Mariannapodbrscek/7daysofcode_day_7">Visualiza mi repositorio</a>
 
+________________________________________
+#7daysofcode #dia7
+
 
 Y sí, esto es algo obligatorio para aprender como desarrollador, pues tarde o temprano en tu carrera necesitarás dar mantenimiento al código que creaste, o incluso arreglar algo en el código que escribió otra persona.
 
